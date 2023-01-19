@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 export default function Todo(props) {
-  const { text, number } = props;
+  const { text, number, handleDeleteToDo } = props;
   return (
     <View style={styles.toDoElement}>
       <View style={styles.toDoNumber}>
@@ -11,7 +11,7 @@ export default function Todo(props) {
         </View>
         <Text style={styles.mainText}>{text}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => handleDeleteToDo(number)}>
         <Text style={styles.removeBtn}>Remove</Text>
       </TouchableOpacity>
     </View>

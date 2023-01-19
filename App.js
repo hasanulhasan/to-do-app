@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Keyboard } from 'react-native-web';
 import CreateToDo from './components/CreateToDo';
 import Todo from './components/Todo';
 
@@ -10,6 +11,13 @@ export default function App() {
 
   const handleAddToDo = () => {
     setToDos(prev => [...prev, { id: prev.length + 1, text: toDoContent }]);
+    Keyboard.dismiss()
+  }
+  const handleDeleteToDo = (id) => {
+    console.log(id)
+    const filtered = toDos.filter(toDo => toDo.id !== id)
+    console.log(filtered)
+    setToDos(filtered);
   }
 
   return (
@@ -23,7 +31,8 @@ export default function App() {
               key={index}
               id={todo.id}
               number={index + 1}
-              text={todo.text}></Todo>)
+              text={todo.text}
+              handleDeleteToDo={handleDeleteToDo}></Todo>)
           }
         </View>
       </View>
